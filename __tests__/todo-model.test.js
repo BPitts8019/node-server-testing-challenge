@@ -1,15 +1,10 @@
-let nextId = 0;
-let todo_list = [];
+const todoModel = require("../data/yourMom");
 
-function add (taskData) {
-   const newTask = {
-      id: nextId++,
-      ...taskData
-   };
-
+/*
+function add (newTask) {
    todo_list.push(newTask);
 
-   return findById(newTask.id);
+   return findAll();
 }
 function findAll () {
    return [...todo_list];
@@ -24,7 +19,6 @@ function removeTask (id) {
    return oldTask;
 }
 function seedData () {
-   nextId = 4;
    todo_list = [
       {
          id: 1,
@@ -45,11 +39,33 @@ function seedData () {
 
    return findAll();
 }
+*/
 
-module.exports = {
-   add,
-   removeTask,
-   findAll,
-   findById,
-   seedData
-};
+beforeEach(() => {
+   todoModel.seedData();
+});
+
+describe("Todo Model", () => {
+   test("add", () => {
+      const newTask = {
+         task: "Test add function",
+         completed: true
+      };
+
+      const result = todoModel.add(newTask);
+
+      expect(result).toEqual({
+         id: 4,
+         ...newTask
+      });
+   });
+   test("removeTask", () => {
+      expect(true).toBe(false);
+   });
+   test("findAll", () => {
+      expect(true).toBe(false);
+   });
+   test("findById", () => {
+      expect(true).toBe(false);
+   });
+});
