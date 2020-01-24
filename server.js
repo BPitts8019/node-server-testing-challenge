@@ -1,6 +1,6 @@
 const express = require("express");
 const server = express();
-const todoRouter = require("./todos/todo-router");
+const todoRouter = require("./todos/todos-router");
 
 //apply middleware
 server.use(express.json());

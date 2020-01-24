@@ -17,6 +17,7 @@ describe("Initial Endpoints", () => {
       //Does it return the expected data?
       expect(res.body.message).toMatch(/Welcome to node-server-testing-challenge API/i);
    });
+   
    test("404 Page not found", async () => {
       const res = await superTest(server).get("/page-not-found");
 
