@@ -1,9 +1,9 @@
 const superTest = require("supertest");
-const server = require("server");
+const server = require("../server");
 const todo_db = require("../data/yourMom");
 
 beforeEach(() => {
-   todo_db.seed();
+   todo_db.seedData();
 });
 
 describe("Initial Endpoints", () => {
