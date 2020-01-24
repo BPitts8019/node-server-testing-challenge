@@ -1,6 +1,6 @@
 const express = require("express");
 const server = express();
-// const todoRouter = require("./todos/todo-router");
+const todoRouter = require("./todos/todo-router");
 
 //apply middleware
 server.use(express.json());
@@ -11,6 +11,9 @@ server.get("/", (req, res, next) => {
       message: "Welcome to node-server-testing-challenge API!"
    });
 });
+
+//Todos Router
+server.use("/api/todos", todoRouter);
 
 //404 Not Found
 server.use((req, res, next) => {
