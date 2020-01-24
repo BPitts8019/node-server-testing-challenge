@@ -46,6 +46,15 @@ beforeEach(() => {
 });
 
 describe("Todo Model", () => {
+   test("findAll", () => {
+      const result = todoModel.findAll();
+
+      expect(Array.isArray(result)).toBeTruthy();
+      expect(result.length).toBe(3);
+   });
+   test("findById", () => {
+      expect(true).toBe(false);
+   });
    test("add", () => {
       const newTask = {
          task: "Test add function",
@@ -69,11 +78,5 @@ describe("Todo Model", () => {
          completed: false
       });
       expect(todoModel.findAll().length).toBe(2);
-   });
-   test("findAll", () => {
-      expect(true).toBe(false);
-   });
-   test("findById", () => {
-      expect(true).toBe(false);
    });
 });
