@@ -47,8 +47,50 @@ describe("Todos Endpoints", () => {
       });
    });
 
-   test("Create a todo", () => {
-      expect().toBeTruthy();
+   test("Create a todo with a no task", async () => {
+      const response = await superTest(server)
+         .post("/api/todos")
+         .send({
+            task: "",
+            completed: false
+         });
+
+      expect(response.status).toBe(400);
+      expect(response.type).toBe("application/json");
+      expect(response.body.message).toBe("Please provide a task for the todo.");
+   });
+
+   test("Create a todo", async () => {
+      const response = await superTest(server)
+         .post("/api/todos")
+         .send({
+            task: "Do something awesome",
+            completed: true
+         });
+
+      expect(response.status).toBe(201);
+      expect(response.type).toBe("application/json");
+      expect(response.body).toEqual({
+         id: 4,
+         task: "Do something awesome",
+         completed: true
+      });
+   });
+
+   test("Create a todo no completed property", async () => {
+      const response = await superTest(server)
+         .post("/api/todos")
+         .send({
+            task: "Do something awesome again"
+         });
+
+      expect(response.status).toBe(201);
+      expect(response.type).toBe("application/json");
+      expect(response.body).toEqual({
+         id: 4,
+         task: "Do something awesome again",
+         completed: false
+      });
    });
 
    test("Delete a todo", () => {

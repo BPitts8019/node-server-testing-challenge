@@ -4,6 +4,7 @@ let todo_list = [];
 function add (taskData) {
    const newTask = {
       id: nextId++,
+      completed: false,
       ...taskData
    };
 

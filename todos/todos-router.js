@@ -1,6 +1,17 @@
 const router = require("express").Router();
 const todoModel = require("../data/yourMom");
 
+router.post("/", (req, res, next) => {
+   if (!req.body.task) {
+      return res.status(400).json({
+         message: "Please provide a task for the todo."
+      });
+   }
+
+   const newTask = todoModel.add(req.body);
+   res.status(201).json(newTask);
+});
+
 router.get("/", (req, res, next) => {
    const tasks = todoModel.findAll();
    res.json(tasks);
