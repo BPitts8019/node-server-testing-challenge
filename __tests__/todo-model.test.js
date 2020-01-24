@@ -58,9 +58,17 @@ describe("Todo Model", () => {
          id: 4,
          ...newTask
       });
+      expect(todoModel.findAll().length).toBe(4);
    });
    test("removeTask", () => {
-      expect(true).toBe(false);
+      const removedTask = todoModel.removeTask(3);
+
+      expect(removedTask).toEqual({
+         id: 3,
+         task: "Take out the trash",
+         completed: false
+      });
+      expect(todoModel.findAll().length).toBe(2);
    });
    test("findAll", () => {
       expect(true).toBe(false);

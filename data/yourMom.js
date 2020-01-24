@@ -19,7 +19,7 @@ function findById (id) {
 }
 function removeTask (id) {
    const oldTask = findById(id);
-   todo_list.filter(task => task.id === id);
+   todo_list = todo_list.filter(task => task.id !== id);
 
    return oldTask;
 }
