@@ -7,8 +7,8 @@ beforeEach(() => {
 });
 
 describe("Initial Endpoints", () => {
-   test("Welcome route", () => {
-      const res = superTest(server).get("/");
+   test("Welcome route", async () => {
+      const res = await superTest(server).get("/");
 
       //Does it return the expected status code?
       expect(res.status).toBe(200);
@@ -17,14 +17,11 @@ describe("Initial Endpoints", () => {
       //Does it return the expected data?
       expect(res.body.message).toMatch(/Welcome to node-server-testing-challenge API/i);
    });
-   test("404 Page not found", () => {
-      const res = superTest(server).get("/");
+   test("404 Page not found", async () => {
+      const res = await superTest(server).get("/page-not-found");
 
       expect(res.status).toBe(404);
       expect(res.type).toBe("application/json");
       expect(res.body.message).toMatch(/Page not found!/i);
    });
-   // test("500 Server Error", () => {
-
-   // });
 });

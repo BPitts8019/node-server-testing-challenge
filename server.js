@@ -2,15 +2,20 @@ const express = require("express");
 const server = express();
 // const todoRouter = require("./todos/todo-router");
 
+//apply middleware
+server.use(express.json());
+
 //Welcome
 server.get("/", (req, res, next) => {
-   res.json({message: "Welcome to node-auth1-project API!"});
+   res.json({
+      message: "Welcome to node-server-testing-challenge API!"
+   });
 });
 
 //404 Not Found
 server.use((req, res, next) => {
    res.status(404).json({
-      message: "Page not found"
+      message: "Page not found!"
    });
 });
 
@@ -20,4 +25,5 @@ server.use((error, req, res, next) => {
       data: error.toString()
    });
 });
+
 module.exports = server;
