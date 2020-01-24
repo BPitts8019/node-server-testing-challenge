@@ -36,4 +36,25 @@ router.get("/:id", (req, res, next) => {
    res.json(task);
 });
 
+router.delete("/:id", (req, res, next) => {
+   const id = Number(req.params.id);
+   console.log(`Remove task ID: ${id}`);
+
+   if (!Number.isInteger(id)) {
+      return res.status(400).json({
+         message: "Please enter the ID for the task you'd like to remove."
+      });
+   }
+   
+   const task = todoModel.findById(id);
+   if (!task) {
+      return res.status(404).json({
+         message: "No task with that id"
+      });
+   }
+
+   todoModel.removeTask(id);
+   res.json(task);
+});
+
 module.exports = router;

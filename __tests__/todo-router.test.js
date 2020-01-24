@@ -93,7 +93,34 @@ describe("Todos Endpoints", () => {
       });
    });
 
-   test("Delete a todo", () => {
-      expect().toBeTruthy();
+   test("Remove a todo with bad ID", async () => {
+      const response = await superTest(server)
+         .delete("/api/todos/bad-id");
+
+      expect(response.status).toBe(400);
+      expect(response.type).toBe("application/json");
+      expect(response.body.message).toBe("Please enter the ID for the task you'd like to remove.");
+   });
+
+   test("Remove a non-existing todo item", async () => {
+      const response = await superTest(server)
+         .delete("/api/todos/10");
+
+      expect(response.status).toBe(404);
+      expect(response.type).toBe("application/json");
+      expect(response.body.message).toBe("No task with that id");
+   });
+
+   test("Remove a todo item", async () => {
+      const response = await superTest(server)
+         .delete("/api/todos/1");
+
+      expect(response.status).toBe(200);
+      expect(response.type).toBe("application/json");
+      expect(response.body).toEqual({
+         id: 1,
+         task: "Clean your room",
+         completed: false
+      });
    });
 });
