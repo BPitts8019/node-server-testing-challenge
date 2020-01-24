@@ -53,7 +53,13 @@ describe("Todo Model", () => {
       expect(result.length).toBe(3);
    });
    test("findById", () => {
-      expect(true).toBe(false);
+      const result = todoModel.findById(2);
+
+      expect(result).toEqual({
+         id: 2,
+         task: "Finish Homwork",
+         completed: false
+      });
    });
    test("add", () => {
       const newTask = {
